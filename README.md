@@ -1,5 +1,9 @@
 # Snake Game - React Implematation
 
+### Live app
+
+You can play the game [here](https://thejsdeveloepr-snake-game.vercel.app/)
+
 ### How to play
 
 To move you can use following keys
