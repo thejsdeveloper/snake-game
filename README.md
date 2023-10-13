@@ -1,8 +1,20 @@
-# React + Vite
+# Snake Game - React Implematation
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### How to play
 
-Currently, two official plugins are available:
+To move you can use following keys
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- `up` : up arrow key or `w`
+- `down`: down arrow key or `s`
+- `left` : left arrow key or `d`
+- `right`: right arrow key or `a`
+
+### Requirements
+
+- 15x15 grid
+- Snake should be controlled with cursor keys (or WASD if you prefer)
+- Snake should start with a length of 3
+- One apple at a time should appear in a random position on the grid. When collected, it should increase the score by one, increase the snake length by one, and change to another random position
+- Display a score for how many apples have been collected
+- If the snake head collides with the rest of the body, the game should end
+- If the snake head collides with the borders, the game should end
