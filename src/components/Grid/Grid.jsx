@@ -21,7 +21,7 @@ const GridCell = ({ content }) => {
   return <div className={styles.grid__col} style={style}></div>;
 };
 
-function Grid({ grid, status }) {
+function Grid({ grid, status, score }) {
   return (
     <div
       className={styles.grid}
@@ -30,7 +30,7 @@ function Grid({ grid, status }) {
       {status === "end" && (
         <div className={styles.grid__status}>
           <p>Game over!</p>
-          <p>Score: {0}</p>
+          <p>Score: {score}</p>
           <p>Press space to restart</p>
         </div>
       )}

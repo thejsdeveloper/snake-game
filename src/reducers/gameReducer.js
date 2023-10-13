@@ -18,17 +18,11 @@ import {
 
 const INITIAL_STATE = {
   grid: generateGrid(),
-  snake: [
-    { x: ROWS / 2, y: COLUNMS / 2 },
-    { x: ROWS / 2, y: COLUNMS / 2 - 1 },
-    { x: ROWS / 2, y: COLUNMS / 2 - 2 },
-    { x: ROWS / 2, y: COLUNMS / 2 - 3 },
-    { x: ROWS / 2, y: COLUNMS / 2 - 4 },
-  ],
+  snake: [{ x: ROWS / 2, y: COLUNMS / 2 }],
   fruit: [{ x: ROWS / 2 + 1, y: COLUNMS / 2 + 1 }],
   status: "idle",
   score: 0,
-  highestScore: 0,
+  highestScore: Number(localStorage.getItem("snake-highScore")) || 0,
   direction: "right",
 };
 
@@ -97,8 +91,12 @@ function reducer(state, action) {
       }
 
       const nextScore = eatenFruit ? state.score++ : state.score;
-      const nextHighestScore =
-        nextScore > state.highestScore ? nextScore : state.highestScore;
+      let nextHighestScore = state.highestScore;
+
+      if (nextScore > state.highestScore) {
+        nextHighestScore = nextScore;
+        localStorage.setItem("snake-highScore", nextHighestScore);
+      }
       const nextFruit = eatenFruit
         ? generateRandomFruitPosition(state.snake)
         : state.fruit;
@@ -141,6 +139,7 @@ function reducer(state, action) {
         grid: nextGrid,
         fruit: fruitPosition,
         status: "inprogress",
+        highestScore: Number(localStorage.getItem("snake-highScore")) || 0,
       };
     }
     default:
