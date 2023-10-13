@@ -23,7 +23,10 @@ const GridCell = ({ content }) => {
 
 function Grid({ grid, status }) {
   return (
-    <div className={styles.grid}>
+    <div
+      className={styles.grid}
+      style={{ "--rows": grid.length, "--cols": grid[0].length }}
+    >
       {status === "end" && (
         <div className={styles.grid__status}>
           <p>Game over!</p>
@@ -37,15 +40,9 @@ function Grid({ grid, status }) {
           <p>Press space to start</p>
         </div>
       )}
-      {grid.map((rows, i) => {
-        return (
-          <div key={`row-${i}`} className={styles.grid__row}>
-            {rows.map((col, j) => {
-              return <GridCell key={`col-${i}-${j}`} content={col}></GridCell>;
-            })}
-          </div>
-        );
-      })}
+      {grid.map((rows, i) =>
+        rows.map((col, j) => <GridCell key={`col-${i}-${j}`} content={col} />)
+      )}
     </div>
   );
 }

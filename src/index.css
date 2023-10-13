@@ -28,4 +28,9 @@ body,
 #root {
   background-image: radial-gradient(var(--background) 1px, var(--dot) 0px);
   background-size: 32px 32px;
+  height: 100%;
+}
+
+* {
+  margin: 0;
 }
