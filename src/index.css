@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Asul&family=Chivo:wght@300;400;700;900&family=Libre+Franklin&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  font-family: var(--regular);
+}
+
+:root {
+  --regular: "Montserrat", sans-serif;
+  --unique: "Bangers", sans-serif;
+  --headlines: "Asul", sans-serif;
+  --primary: #006d77;
+  --secondary: #83c5be;
+  --background: rgb(169, 170, 164);
+  --dot: rgb(243, 239, 233);
+}
+
+html,
+body,
+#root {
+  background-image: radial-gradient(var(--background) 1px, var(--dot) 0px);
+  background-size: 32px 32px;
+}
