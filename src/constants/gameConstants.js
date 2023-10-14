@@ -27,3 +27,5 @@ const DISALLOWED_DIRECTIONS = {
 
 export const isValidDirection = (currentDirection, previousDirection) =>
   DISALLOWED_DIRECTIONS[previousDirection] !== currentDirection;
+
+export const SNAKE_HIGHEST_SCORE_KEY = "snake-highest-score";

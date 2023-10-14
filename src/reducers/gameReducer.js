@@ -22,7 +22,6 @@ const INITIAL_STATE = {
   fruit: [{ x: ROWS / 2 + 1, y: COLUNMS / 2 + 1 }],
   status: "idle",
   score: 0,
-  highestScore: Number(localStorage.getItem("snake-highScore")) || 0,
   direction: "right",
 };
 
@@ -90,13 +89,11 @@ function reducer(state, action) {
         snakeClone.pop();
       }
 
-      const nextScore = eatenFruit ? state.score++ : state.score;
-      let nextHighestScore = state.highestScore;
-
-      if (nextScore > state.highestScore) {
-        nextHighestScore = nextScore;
-        localStorage.setItem("snake-highScore", nextHighestScore);
+      let nextScore = state.score;
+      if (eatenFruit) {
+        nextScore += 1;
       }
+
       const nextFruit = eatenFruit
         ? generateRandomFruitPosition(state.snake)
         : state.fruit;
@@ -116,7 +113,6 @@ function reducer(state, action) {
         fruit: nextFruit,
         direction: currentDirection,
         score: nextScore,
-        highestScore: nextHighestScore,
       };
 
       return nextState;
@@ -129,17 +125,19 @@ function reducer(state, action) {
       if (state.status === "inprogress") {
         return state;
       }
+
       const fruitPosition = generateRandomFruitPosition(state.snake);
+
       const nextGrid = generateGridWithSnakeAndApple(
         state.snake,
         fruitPosition
       );
+
       return {
         ...INITIAL_STATE,
         grid: nextGrid,
         fruit: fruitPosition,
         status: "inprogress",
-        highestScore: Number(localStorage.getItem("snake-highScore")) || 0,
       };
     }
     default:
