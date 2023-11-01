@@ -1,25 +1,5 @@
-/* eslint-disable react/prop-types */
+import GridCell from "../GridCell/GridCell";
 import styles from "./Grid.module.css";
-const GridCell = ({ content }) => {
-  let style = {};
-  if (content === "snake") {
-    style = {
-      backgroundColor: "#f19fb6",
-    };
-  }
-
-  if (content === "snake-head") {
-    style = {
-      backgroundColor: "#f27195",
-    };
-  }
-  if (content === "fruit") {
-    style = {
-      backgroundColor: "var(--primary)",
-    };
-  }
-  return <div className={styles.grid__col} style={style}></div>;
-};
 
 function Grid({ grid, status, score }) {
   return (

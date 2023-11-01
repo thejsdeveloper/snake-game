@@ -19,6 +19,10 @@ html {
   --headlines: "Asul", sans-serif;
   --primary: #006d77;
   --secondary: #83c5be;
+  --snake-head: #f27195;
+  --snake: #f19fb6;
+  --fruit: #006d77;
+  --empty: #fff;
   --background: rgb(169, 170, 164);
   --dot: rgb(243, 239, 233);
 }

@@ -11,15 +11,6 @@
   box-shadow: 10px 10px 5px var(--secondary);
 }
 
-.grid__col {
-  width: 40px;
-  height: 40px;
-  background-color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .grid__status {
   position: absolute;
   top: 0;
