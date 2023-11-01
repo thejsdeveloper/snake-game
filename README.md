@@ -1,8 +1,10 @@
-# Snake Game - React Implematation
+# ![N|Solid](https://github.com/thejsdeveloper/snake-game/blob/main/public/favicon.png) Snake Game - React Implematation
 
 ### Live app
 
 You can play the game [here](https://thejsdeveloepr-snake-game.vercel.app/)
+
+![game](https://github.com/thejsdeveloper/snake-game/blob/main/public/inprogress.gif)
 
 ### How to play
 
@@ -47,8 +49,12 @@ There can be two type of `action` for user
 There are three possible `state` for the game
 
 - `idle` : Initial state of game
+  ![idle](https://github.com/thejsdeveloper/snake-game/blob/main/public/start.png)
 - `inprogress`: When game is in progress
+  
+  ![inprogress](https://github.com/thejsdeveloper/snake-game/blob/main/public/inprogress.gif)
 - `end`: When game has ended
+  ![end state](https://github.com/thejsdeveloper/snake-game/blob/main/public/end.png)
 
 #### Start Game
 
@@ -110,7 +116,7 @@ If the snake is collided with itself that also a game end scenario. We can end t
 
 ## Components
 
-All the components are in (components)[https://github.com/thejsdeveloper/snake-game/tree/main/src/components] folder
+All the components are in [scr/components](https://github.com/thejsdeveloper/snake-game/tree/main/src/components) folder
 
 There are two components
 
