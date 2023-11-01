@@ -1,4 +1,3 @@
-/* eslint-disable no-extra-boolean-cast */
 import styles from "./App.module.css";
 import Grid from "./components/Grid/Grid";
 import { SNAKE_HIGHEST_SCORE_KEY } from "./constants/gameConstants";
