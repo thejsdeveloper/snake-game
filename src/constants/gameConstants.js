@@ -18,14 +18,11 @@ export const getSpeed = (difficultyLevel = "easy") => {
   return SPEED[difficultyLevel];
 };
 
-const DISALLOWED_DIRECTIONS = {
+export const DISALLOWED_DIRECTIONS = {
   right: "left",
   left: "right",
   up: "down",
   down: "up",
 };
-
-export const isValidDirection = (currentDirection, previousDirection) =>
-  DISALLOWED_DIRECTIONS[previousDirection] !== currentDirection;
 
 export const SNAKE_HIGHEST_SCORE_KEY = "snake-highest-score";

@@ -1,4 +1,9 @@
-import { COLUMNS, DIRECTION_DELTAS, ROWS } from "../constants/gameConstants";
+import {
+  COLUMNS,
+  DIRECTION_DELTAS,
+  DISALLOWED_DIRECTIONS,
+  ROWS,
+} from "../constants/gameConstants";
 
 export const getNextPosition = (currentPos, direction) => {
   const { x, y } = currentPos;
@@ -64,3 +69,6 @@ export const generateRandomFruitPosition = (snakePositions) => {
 
   return position;
 };
+
+export const isValidDirection = (currentDirection, previousDirection) =>
+  DISALLOWED_DIRECTIONS[previousDirection] !== currentDirection;
