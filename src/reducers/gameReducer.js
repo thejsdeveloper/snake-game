@@ -8,13 +8,17 @@ import {
   isCollidedWithItself,
   isMoveWithinBounds,
 } from "../utils/gameUtils";
-import { useGameControl } from "../hooks/useGameControl";
+import { useGameDirectionControl } from "../hooks/useGameDirectionControl";
 import {
   COLUMNS,
   ROWS,
   getSpeed,
   isValidDirection,
 } from "../constants/gameConstants";
+import { useSpaceKeydown } from "../hooks/useSpaceKeyDown";
+import { useInterval } from "../hooks/useInterval";
+
+const speed = getSpeed();
 
 const INITIAL_STATE = {
   grid: generateGrid(),
@@ -118,14 +122,6 @@ function reducer(state, action) {
       return nextState;
     }
     case "startGame": {
-      /***
-       * id game is inprogress ignore all the events to start the game
-       * i.e. if user presses space key during game just ignore it
-       */
-      if (state.status === "inprogress") {
-        return state;
-      }
-
       const fruitPosition = generateRandomFruitPosition(state.snake);
 
       const nextGrid = generateGridWithSnakeAndApple(
@@ -147,49 +143,33 @@ function reducer(state, action) {
 
 export const useSnakeGame = () => {
   const [state, dispatch] = React.useReducer(reducer, INITIAL_STATE);
-  const directionRef = useGameControl(state.direction);
-  const intervalIdRef = React.useRef(null);
-
   const { status } = state;
-
-  React.useEffect(() => {
-    const handleSpaceKey = (e) => {
-      e.preventDefault();
-      if (e.code.toLowerCase() !== "space") {
-        return;
-      }
-      dispatch({
-        type: "startGame",
-      });
-    };
-
-    window.addEventListener("keydown", handleSpaceKey);
-    () => {
-      window.removeEventListener("keydown", handleSpaceKey);
-    };
-  }, []);
-
-  React.useEffect(() => {
-    if (status === "end") {
-      directionRef.current = "right";
-      clearInterval(intervalIdRef.current);
+  useSpaceKeydown(() => {
+    /***
+     * if game is inprogress ignore all the events to start the game
+     * i.e. if user presses space key during game just ignore it
+     */
+    if (state.status === "inprogress") {
+      return;
     }
+    dispatch({
+      type: "startGame",
+    });
+  });
 
-    if (status === "inprogress") {
-      const speed = getSpeed();
-      intervalIdRef.current = setInterval(() => {
+  const directionRef = useGameDirectionControl(state.direction);
+
+  useInterval(
+    () => {
+      if (status === "inprogress") {
         dispatch({
           type: "move",
           direction: directionRef.current,
         });
-      }, speed);
-    }
-
-    () => {
-      clearInterval(intervalIdRef.current);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [status]);
+      }
+    },
+    status === "end" ? null : speed
+  );
 
   return {
     state,
