@@ -1,39 +1,40 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useEventListener } from "./useEventListener";
 
-export const useGameControl = (init) => {
+export const useGameDirectionControl = (init) => {
   const directionRef = React.useRef(init);
+
+  useEffect(() => {
+    directionRef.current = init;
+  }, [init]);
+
   const handleKeyEvents = React.useCallback((e) => {
     e.preventDefault();
     switch (e.code) {
       case "ArrowUp":
-      case "keyW": {
+      case "KeyW": {
         directionRef.current = "up";
         break;
       }
       case "ArrowDown":
-      case "keyS": {
+      case "KeyS": {
         directionRef.current = "down";
         break;
       }
       case "ArrowRight":
-      case "keyD": {
+      case "KeyD": {
         directionRef.current = "right";
         break;
       }
       case "ArrowLeft":
-      case "keyA": {
+      case "KeyA": {
         directionRef.current = "left";
         break;
       }
     }
   }, []);
 
-  React.useEffect(() => {
-    window.addEventListener("keydown", handleKeyEvents);
-    () => {
-      window.removeEventListener("keydown", handleKeyEvents);
-    };
-  }, [handleKeyEvents]);
+  useEventListener("keydown", handleKeyEvents);
 
   return directionRef;
 };
