@@ -1,6 +1,6 @@
 const BOARD_SIZE = 12;
 export const ROWS = BOARD_SIZE;
-export const COLUNMS = BOARD_SIZE;
+export const COLUMNS = BOARD_SIZE;
 export const DIRECTION_DELTAS = {
   left: [0, -1],
   right: [0, 1],

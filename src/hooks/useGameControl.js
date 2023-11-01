@@ -2,7 +2,7 @@ import React from "react";
 
 export const useGameControl = (init) => {
   const directionRef = React.useRef(init);
-  const handlekeyEvents = React.useCallback((e) => {
+  const handleKeyEvents = React.useCallback((e) => {
     e.preventDefault();
     switch (e.code) {
       case "ArrowUp":
@@ -29,11 +29,11 @@ export const useGameControl = (init) => {
   }, []);
 
   React.useEffect(() => {
-    window.addEventListener("keydown", handlekeyEvents);
+    window.addEventListener("keydown", handleKeyEvents);
     () => {
-      window.removeEventListener("keydown", handlekeyEvents);
+      window.removeEventListener("keydown", handleKeyEvents);
     };
-  }, [handlekeyEvents]);
+  }, [handleKeyEvents]);
 
   return directionRef;
 };

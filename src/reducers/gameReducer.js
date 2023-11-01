@@ -3,14 +3,14 @@ import {
   generateGrid,
   generateGridWithSnakeAndApple,
   generateRandomFruitPosition,
-  getNextPostion,
+  getNextPosition,
   hasEatenFruit,
   isCollidedWithItself,
   isMoveWithinBounds,
 } from "../utils/gameUtils";
 import { useGameControl } from "../hooks/useGameControl";
 import {
-  COLUNMS,
+  COLUMNS,
   ROWS,
   getSpeed,
   isValidDirection,
@@ -18,8 +18,8 @@ import {
 
 const INITIAL_STATE = {
   grid: generateGrid(),
-  snake: [{ x: ROWS / 2, y: COLUNMS / 2 }],
-  fruit: [{ x: ROWS / 2 + 1, y: COLUNMS / 2 + 1 }],
+  snake: [{ x: ROWS / 2, y: COLUMNS / 2 }],
+  fruit: [{ x: ROWS / 2 + 1, y: COLUMNS / 2 + 1 }],
   status: "idle",
   score: 0,
   direction: "right",
@@ -33,8 +33,8 @@ function reducer(state, action) {
        * before making move check if the direction is allowed
        * like if the snake is moving right and user presses left key then
        * we can keep on moving to right
-       * if previous direction (diretion in state) is
-       * right -> ignore lefy
+       * if previous direction (direction in state) is
+       * right -> ignore left
        * left -> ignore right
        * up => ignore down
        * down -> ignore up
@@ -50,21 +50,21 @@ function reducer(state, action) {
 
       /**
        * if it is valid direction move
-       * then calculate next postion
+       * then calculate next position
        */
 
       const currentPos = state.snake[0];
-      const nextPos = getNextPostion(currentPos, currentDirection);
+      const nextPos = getNextPosition(currentPos, currentDirection);
       /**
-       * check if the move is winthin bounds of grid
-       * if not then it mean snake colided with wall
+       * check if the move is within bounds of grid
+       * if not then it mean snake collided with wall
        * and game should end
        */
       const moveWithinBounds = isMoveWithinBounds(nextPos.x, nextPos.y);
 
       /**
        * check if the move made snake to collide itself
-       * if yes it mean snake colided with wall
+       * if yes it mean snake collided with wall
        * and game should end
        */
       const collidedWithItself = isCollidedWithItself(nextPos, state.snake);
@@ -102,7 +102,7 @@ function reducer(state, action) {
        * since snake has made a move we need to calculate new grid
        * instead of iterating through grid and finding out where is snake
        * I think it is better to generate the grid and position the snake and apple at
-       * correct postion
+       * correct position
        */
       const nextGrid = generateGridWithSnakeAndApple(snakeClone, nextFruit);
 
@@ -120,7 +120,7 @@ function reducer(state, action) {
     case "startGame": {
       /***
        * id game is inprogress ignore all the events to start the game
-       * i.e. if user pressess space key during game just ignore it
+       * i.e. if user presses space key during game just ignore it
        */
       if (state.status === "inprogress") {
         return state;
