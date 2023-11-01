@@ -1,4 +1,4 @@
-# ![N|Solid](https://github.com/thejsdeveloper/snake-game/blob/main/public/favicon.png) Snake Game - React Implematation
+# ![snake logo](https://github.com/thejsdeveloper/snake-game/blob/main/public/favicon.png) Snake Game - React Implematation
 
 ### Live app
 
