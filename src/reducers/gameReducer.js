@@ -188,7 +188,8 @@ export const useSnakeGame = () => {
     () => {
       clearInterval(intervalIdRef.current);
     };
-  }, [status, directionRef]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [status]);
 
   return {
     state,
