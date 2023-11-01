@@ -15,8 +15,8 @@ import {
   getSpeed,
   isValidDirection,
 } from "../constants/gameConstants";
-import { useSpaceKeydown } from "../hooks/useSpaceKeyDown";
 import { useInterval } from "../hooks/useInterval";
+import { useSpaceKeydown } from "../hooks/useSpaceKeydown";
 
 const speed = getSpeed();
 
